@@ -1,0 +1,144 @@
+.vs-var-field-wrap {
+  position: relative;
+}
+
+/* Portal mounts on body; fixed position comes from inline style */
+.vs-var-picker.vs-var-picker--portal {
+  max-width: min(320px, calc(100vw - 16px));
+  background: linear-gradient(165deg, #1a2438 0%, #121a2a 100%);
+  border: 1px solid rgba(99, 140, 255, 0.45);
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
+.vs-var-picker__steps {
+  display: flex;
+  gap: 0;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.25);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.vs-var-picker__step {
+  color: #6b7a96;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.vs-var-picker__step--active {
+  color: #fff;
+  background: rgba(99, 140, 255, 0.35);
+}
+
+.vs-var-picker__step--done {
+  color: #8b9bb4;
+}
+
+.vs-var-picker__list {
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 6px;
+}
+
+.vs-var-picker__item {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  margin: 0 0 4px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #e8ecf4;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.vs-var-picker__item:hover {
+  background: rgba(99, 140, 255, 0.15);
+}
+
+.vs-var-picker__item:last-child {
+  margin-bottom: 0;
+}
+
+.vs-var-picker__name {
+  font-weight: 600;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.vs-var-picker__badge {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(99, 140, 255, 0.35);
+  color: #c8d6ff;
+  flex-shrink: 0;
+}
+
+.vs-var-picker__out-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.vs-var-picker__out-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.vs-var-picker__out-desc {
+  font-size: 11px;
+  color: #8b9bb4;
+  line-height: 1.35;
+}
+
+.vs-var-picker__empty {
+  padding: 12px 10px;
+  font-size: 12px;
+  color: #8b9bb4;
+  line-height: 1.45;
+}
+
+.vs-var-picker__back {
+  margin: 6px 6px 0;
+  padding: 6px 10px;
+  font-size: 11px;
+  color: #8b9bb4;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+  width: calc(100% - 12px);
+}
+
+.vs-var-picker__back:hover {
+  color: #e8ecf4;
+  border-color: rgba(99, 140, 255, 0.35);
+}
+
+.vs-var-warn {
+  margin: 0 0 8px;
+  padding: 8px 10px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #e8c96a;
+  background: rgba(232, 201, 106, 0.1);
+  border: 1px solid rgba(232, 201, 106, 0.25);
+  border-radius: 8px;
+}

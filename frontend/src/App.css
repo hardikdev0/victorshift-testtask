@@ -1,0 +1,164 @@
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(1200px 600px at 10% -10%, rgba(99, 140, 255, 0.18), transparent),
+    radial-gradient(800px 400px at 90% 0%, rgba(120, 86, 255, 0.12), transparent),
+    #0b0f16;
+  color: #e8ecf4;
+}
+
+.app-main {
+  flex: 1;
+  min-height: 0;
+  padding: 0 16px 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-footer {
+  padding: 12px 16px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* Toolbar */
+.pipeline-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(15, 20, 32, 0.85);
+  backdrop-filter: blur(10px);
+}
+
+.pipeline-toolbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pipeline-toolbar__logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #638cff, #7856ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(99, 140, 255, 0.35);
+}
+
+.pipeline-toolbar__title {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.pipeline-toolbar__hint {
+  font-size: 12px;
+  color: #8b9bb4;
+  margin-top: 2px;
+}
+
+.pipeline-toolbar__nodes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.draggable-node {
+  cursor: grab;
+  min-width: 88px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #243049 0%, #1a2332 100%);
+  border: 1px solid rgba(99, 140, 255, 0.35);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  user-select: none;
+  transition: transform 0.12s ease, border-color 0.12s ease;
+}
+
+.draggable-node:hover {
+  border-color: #8aa6ff;
+  transform: translateY(-1px);
+}
+
+.draggable-node:active {
+  cursor: grabbing;
+}
+
+/* Canvas — flex so toolbar + footer + Submit stay on screen */
+.pipeline-canvas-wrap {
+  flex: 1;
+  width: 100%;
+  min-height: 320px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(99, 140, 255, 0.2);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.pipeline-canvas-wrap .react-flow {
+  background: #0d121c;
+}
+
+.pipeline-controls {
+  border-radius: 10px !important;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
+}
+
+.pipeline-minimap {
+  border-radius: 10px !important;
+  overflow: hidden;
+  border: 1px solid rgba(99, 140, 255, 0.25) !important;
+}
+
+/* Submit */
+.pipeline-submit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pipeline-submit__btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #638cff 0%, #7856ff 100%);
+  box-shadow: 0 6px 20px rgba(99, 140, 255, 0.35);
+  transition: opacity 0.15s ease, transform 0.12s ease;
+}
+
+.pipeline-submit__btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.pipeline-submit__btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.pipeline-submit__hint {
+  font-size: 12px;
+  color: #8b9bb4;
+}

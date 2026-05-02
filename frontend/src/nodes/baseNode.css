@@ -1,0 +1,124 @@
+.vs-node {
+  min-width: 200px;
+  max-width: 520px;
+  background: linear-gradient(165deg, #1e2a3f 0%, #151c2e 100%);
+  border: 1px solid rgba(99, 140, 255, 0.35);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  color: #e8ecf4;
+  font-size: 13px;
+  position: relative;
+}
+
+.vs-node__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px 12px 0 0;
+}
+
+.vs-node__title {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+
+.vs-node__subtitle {
+  font-size: 11px;
+  color: #8b9bb4;
+  text-transform: uppercase;
+}
+
+.vs-node__body {
+  padding: 10px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vs-node__body label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: #a8b6d4;
+  font-size: 12px;
+}
+
+.vs-node__body input,
+.vs-node__body select,
+.vs-node__body textarea {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  background: #0d1119;
+  border: 1px solid rgba(99, 140, 255, 0.25);
+  border-radius: 8px;
+  color: #e8ecf4;
+  padding: 6px 8px;
+  font-size: 13px;
+  outline: none;
+}
+
+.vs-node__body input:focus,
+.vs-node__body select:focus,
+.vs-node__body textarea:focus {
+  border-color: #638cff;
+  box-shadow: 0 0 0 2px rgba(99, 140, 255, 0.2);
+}
+
+.vs-node__muted {
+  margin: 0;
+  color: #8b9bb4;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.vs-node-textarea {
+  min-height: 56px;
+  resize: none;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  line-height: 1.45;
+}
+
+/* LLM node: fixed field size; scroll inside (node does not grow while typing) */
+.vs-llm-textarea {
+  display: block;
+  min-height: 72px;
+  max-height: 72px;
+  height: 72px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  resize: none;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  line-height: 1.45;
+}
+
+.vs-llm-textarea--prompt {
+  min-height: 96px;
+  max-height: 96px;
+  height: 96px;
+}
+
+.vs-node__handle {
+  width: 10px !important;
+  height: 10px !important;
+  border: 2px solid #1a2332 !important;
+  background: #638cff !important;
+}
+
+.vs-node__handle--target {
+  left: -6px !important;
+}
+
+.vs-node__handle--source {
+  right: -6px !important;
+}
