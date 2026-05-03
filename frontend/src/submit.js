@@ -75,7 +75,6 @@ export const SubmitButton = () => {
       <button type="button" className="pipeline-submit__btn" onClick={handleSubmit} disabled={loading}>
         {loading ? 'Submitting…' : 'Submit pipeline'}
       </button>
-      <span className="pipeline-submit__hint">POSTs the graph to /pipelines/parse and shows a summary alert.</span>
     </div>
   );
 };

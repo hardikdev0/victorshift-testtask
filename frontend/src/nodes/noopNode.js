@@ -1,12 +1,14 @@
 import { BaseNode } from './BaseNode';
 
-export const NoopNode = ({ id }) => (
-  <BaseNode
-    title="Passthrough"
-    subtitle="Wire"
-    targets={[{ id: `${id}-in`, style: { top: '50%' } }]}
-    sources={[{ id: `${id}-out`, style: { top: '50%' } }]}
-  >
-    <p className="vs-node__muted">One-to-one pass-through for layout and routing.</p>
-  </BaseNode>
-);
+export const NoopNode = ({ id }) => {
+  return (
+    <BaseNode
+      title="Passthrough"
+      subtitle="Utility"
+      targets={[{ id: `${id}-in` }]}
+      sources={[{ id: `${id}-out` }]}
+    >
+      <p className="vs-node__muted">Simply passes data unchanged.</p>
+    </BaseNode>
+  );
+};

@@ -16,11 +16,11 @@ import './baseNode.css';
 export function BaseNode({ title, subtitle, children, targets = [], sources = [], rootStyle, rootClassName }) {
   return (
     <div className={['vs-node', rootClassName].filter(Boolean).join(' ')} style={rootStyle}>
+      <div className="vs-node__body">{children}</div>
       <div className="vs-node__header">
         <span className="vs-node__title">{title}</span>
         {subtitle ? <span className="vs-node__subtitle">{subtitle}</span> : null}
       </div>
-      <div className="vs-node__body">{children}</div>
       {targets.map((h) => (
         <Handle
           key={h.id}

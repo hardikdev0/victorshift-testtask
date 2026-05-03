@@ -131,6 +131,13 @@ export function useVariablePicker(selfNodeId) {
         finishInsert(picker.triggerStart, inserted, getText, setText, inputRef);
       };
 
+      const currentText = getText();
+      const availableUpstreamNodes = upstreamNodes.filter(n => {
+        const label = getNodePickerLabel(n);
+        const ref = safeTemplateRef(label);
+        return !currentText.includes(`{{${ref}`);
+      });
+
       const hint =
         picker.emptyHint ??
         'Add nodes to the canvas and connect them to this block, then type {{ here.';
@@ -161,10 +168,12 @@ export function useVariablePicker(selfNodeId) {
           ) : null}
           <div className="vs-var-picker__list">
             {picker.step === 1 ? (
-              upstreamNodes.length === 0 ? (
-                <div className="vs-var-picker__empty">{hint}</div>
+              availableUpstreamNodes.length === 0 ? (
+                <div className="vs-var-picker__empty">
+                  {upstreamNodes.length > 0 ? "All available nodes are already referenced." : hint}
+                </div>
               ) : (
-                upstreamNodes.map((n) => (
+                availableUpstreamNodes.map((n) => (
                   <button
                     key={n.id}
                     type="button"

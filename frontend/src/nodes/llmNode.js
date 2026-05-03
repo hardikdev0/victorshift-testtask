@@ -63,6 +63,47 @@ export const LLMNode = ({ id, data }) => {
     tryOpenPicker('prompt', v, pos, promptRef.current);
   };
 
+  const extractVars = (text) => {
+    const re = /\{\{\s*([a-zA-Z0-9_$]+(?:\.[a-zA-Z0-9_$]+)*)\s*\}\}/g;
+    const matches = [];
+    let m;
+    while ((m = re.exec(text)) !== null) {
+      if (!matches.includes(m[1])) {
+        matches.push(m[1]);
+      }
+    }
+    return matches;
+  };
+
+  const removeVar = (varName, text, setText) => {
+    const escapedVarName = varName.replace(/\./g, '\\.');
+    const regex = new RegExp(`\\{\\{\\s*${escapedVarName}\\s*\\}\\}`, 'g');
+    setText(text.replace(regex, '').replace(/\n\s*\n/g, '\n').trim());
+  };
+
+  const systemVars = useMemo(() => extractVars(systemText), [systemText]);
+  const promptVars = useMemo(() => extractVars(promptText), [promptText]);
+
+  const renderChips = (vars, text, setText) => {
+    if (vars.length === 0) return null;
+    return (
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginTop: '6px' }}>
+        {vars.map((v) => (
+          <div key={v} className="vs-var-picker__badge" style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'default' }}>
+            <span>{`{{${v}}}`}</span>
+            <span
+              style={{ cursor: 'pointer', padding: '0 2px', fontWeight: 'bold', color: '#ff8a8a', fontSize: '10px' }}
+              onClick={() => removeVar(v, text, setText)}
+              title="Remove variable"
+            >
+              ✕
+            </span>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <BaseNode
       title="LLM"
@@ -73,18 +114,25 @@ export const LLMNode = ({ id, data }) => {
       ]}
       sources={[{ id: `${id}-response` }]}
     >
-      {unusedUpstreamLabels.length > 0 ? (
-        <p className="vs-var-warn">
-          You are not referencing connected inputs: {unusedUpstreamLabels.join(', ')}. Type {'{{'} in a field below to
-          insert from a node.
-        </p>
-      ) : null}
+      {upstreamIds.size > 0 && (
+        <div style={{ minHeight: '34px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', marginBottom: '8px' }}>
+          {unusedUpstreamLabels.length > 0 ? (
+            <p className="vs-var-warn" style={{ margin: 0 }}>
+              Unused inputs: {unusedUpstreamLabels.join(', ')}
+            </p>
+          ) : (
+            <p className="vs-var-warn" style={{ margin: 0, color: '#88d8b0', backgroundColor: 'rgba(136, 216, 176, 0.1)', borderColor: 'rgba(136, 216, 176, 0.25)' }}>
+              All inputs referenced ✓
+            </p>
+          )}
+        </div>
+      )}
       <div className="vs-var-field-wrap">
         <label>
           System (instructions)
           <textarea
             ref={systemRef}
-            className="vs-node-textarea"
+            className="vs-llm-textarea"
             rows={2}
             value={systemText}
             onChange={onSystemChange}
@@ -92,6 +140,7 @@ export const LLMNode = ({ id, data }) => {
             placeholder={'Type {{ to reference upstream data'}
           />
         </label>
+        {renderChips(systemVars, systemText, setSystemText)}
         {renderPicker('system', () => systemText, setSystemText, systemRef)}
       </div>
       <div className="vs-var-field-wrap">
@@ -99,7 +148,7 @@ export const LLMNode = ({ id, data }) => {
           Prompt / question
           <textarea
             ref={promptRef}
-            className="vs-node-textarea"
+            className="vs-llm-textarea vs-llm-textarea--prompt"
             rows={3}
             value={promptText}
             onChange={onPromptChange}
@@ -107,6 +156,7 @@ export const LLMNode = ({ id, data }) => {
             placeholder={'Type {{ to pick a node, then an output field'}
           />
         </label>
+        {renderChips(promptVars, promptText, setPromptText)}
         {renderPicker('prompt', () => promptText, setPromptText, promptRef)}
       </div>
     </BaseNode>
